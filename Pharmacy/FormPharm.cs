@@ -63,7 +63,7 @@ namespace Pharmacy
                 pharm.Phone = textBoxPhone.Text;
                 if (pharm.Name == "" || pharm.Address == "" || pharm.Email == "" || pharm.Phone == "")
                 {
-                    throw new Exception("Обязательное заполнение полей ФИО!");
+                    throw new Exception("Обязательное заполнение полей!");
                 }
                 Program.a.Apteka.Add(pharm);
                 Program.a.SaveChanges();
@@ -88,7 +88,7 @@ namespace Pharmacy
                     pharm.Phone = textBoxPhone.Text;
                     if (pharm.Name == "" || pharm.Address == "" || pharm.Email == "" || pharm.Phone == "")
                     {
-                        throw new Exception("Обязательное заполнение полей ФИО!");
+                        throw new Exception("Обязательное заполнение полей!");
                     }
                     Program.a.SaveChanges();
                     ShowPharm();

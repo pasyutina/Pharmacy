@@ -98,7 +98,8 @@
             this.Controls.Add(this.buttonOpenPharm);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Menu";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Меню";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
