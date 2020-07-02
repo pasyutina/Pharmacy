@@ -104,7 +104,7 @@
             this.Dosage,
             this.Manuf,
             this.Date});
-            this.listViewMed.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listViewMed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listViewMed.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.listViewMed.FullRowSelect = true;
             this.listViewMed.GridLines = true;
