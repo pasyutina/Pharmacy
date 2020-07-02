@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище AptekaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Apteka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Medicins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Form" Type="nvarchar(max)" />
+          <Property Name="Dosage" Type="nvarchar(max)" />
+          <Property Name="Manuf" Type="nvarchar(max)" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Nal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMedicine" Type="int" />
+          <Property Name="IdApteka" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="int" />
+        </EntityType>
+        <Association Name="FK_Nal_Apteka">
+          <End Role="Apteka" Type="Self.Apteka" Multiplicity="0..1" />
+          <End Role="Nal" Type="Self.Nal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apteka">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nal">
+              <PropertyRef Name="IdApteka" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nal_Medicins">
+          <End Role="Medicins" Type="Self.Medicins" Multiplicity="0..1" />
+          <End Role="Nal" Type="Self.Nal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nal">
+              <PropertyRef Name="IdMedicine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище AptekaModelContainer">
+          <EntitySet Name="Apteka" EntityType="Self.Apteka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicins" EntityType="Self.Medicins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nal" EntityType="Self.Nal" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Nal_Apteka" Association="Self.FK_Nal_Apteka">
+            <End Role="Apteka" EntitySet="Apteka" />
+            <End Role="Nal" EntitySet="Nal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nal_Medicins" Association="Self.FK_Nal_Medicins">
+            <End Role="Medicins" EntitySet="Medicins" />
+            <End Role="Nal" EntitySet="Nal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AptekaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Apteka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Nal" Relationship="Self.FK_Nal_Apteka" FromRole="Apteka" ToRole="Nal" />
+        </EntityType>
+        <EntityType Name="Medicins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Form" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dosage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Manuf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Nal" Relationship="Self.FK_Nal_Medicins" FromRole="Medicins" ToRole="Nal" />
+        </EntityType>
+        <EntityType Name="Nal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMedicine" Type="Int32" />
+          <Property Name="IdApteka" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <NavigationProperty Name="Apteka" Relationship="Self.FK_Nal_Apteka" FromRole="Nal" ToRole="Apteka" />
+          <NavigationProperty Name="Medicins" Relationship="Self.FK_Nal_Medicins" FromRole="Nal" ToRole="Medicins" />
+        </EntityType>
+        <Association Name="FK_Nal_Apteka">
+          <End Role="Apteka" Type="Self.Apteka" Multiplicity="0..1" />
+          <End Role="Nal" Type="Self.Nal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apteka">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nal">
+              <PropertyRef Name="IdApteka" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nal_Medicins">
+          <End Role="Medicins" Type="Self.Medicins" Multiplicity="0..1" />
+          <End Role="Nal" Type="Self.Nal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nal">
+              <PropertyRef Name="IdMedicine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AptekaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Apteka" EntityType="Self.Apteka" />
+          <EntitySet Name="Medicins" EntityType="Self.Medicins" />
+          <EntitySet Name="Nal" EntityType="Self.Nal" />
+          <AssociationSet Name="FK_Nal_Apteka" Association="Self.FK_Nal_Apteka">
+            <End Role="Apteka" EntitySet="Apteka" />
+            <End Role="Nal" EntitySet="Nal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nal_Medicins" Association="Self.FK_Nal_Medicins">
+            <End Role="Medicins" EntitySet="Medicins" />
+            <End Role="Nal" EntitySet="Nal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AptekaModelContainer" CdmEntityContainer="AptekaEntities">
+          <EntitySetMapping Name="Apteka">
+            <EntityTypeMapping TypeName="AptekaModel.Apteka">
+              <MappingFragment StoreEntitySet="Apteka">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicins">
+            <EntityTypeMapping TypeName="AptekaModel.Medicins">
+              <MappingFragment StoreEntitySet="Medicins">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Form" ColumnName="Form" />
+                <ScalarProperty Name="Dosage" ColumnName="Dosage" />
+                <ScalarProperty Name="Manuf" ColumnName="Manuf" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nal">
+            <EntityTypeMapping TypeName="AptekaModel.Nal">
+              <MappingFragment StoreEntitySet="Nal">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdMedicine" ColumnName="IdMedicine" />
+                <ScalarProperty Name="IdApteka" ColumnName="IdApteka" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
