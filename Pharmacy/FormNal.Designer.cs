@@ -100,7 +100,7 @@
             this.Pharm,
             this.Quantity,
             this.Price});
-            this.listViewNal.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listViewNal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listViewNal.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.listViewNal.FullRowSelect = true;
             this.listViewNal.GridLines = true;
